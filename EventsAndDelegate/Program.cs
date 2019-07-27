@@ -13,8 +13,11 @@ namespace EventsAndDelegate
             var video = new Video() { title = "Kimi no Nawa" };
             var videoEncoder = new VideoEncoder(); // Publisher
             var mailService = new MailService(); // Subscriber (optional karna bisa buat method langsung di kelas ini)
+            var messageService = new MessageService(); // Add new Subscriber
 
             videoEncoder.VideoEncoded += mailService.OnVideoEncoded; // Mendaftarkan subscriber
+            videoEncoder.VideoEncoded += messageService.OnVideoEncoded; // Mendaftarkan subscriber baru
+            
 
             videoEncoder.Encode();
             Console.WriteLine("Done");
