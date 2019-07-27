@@ -12,30 +12,36 @@ namespace EventsAndDelegate
         // 1. Define the delegate that will be use
         // 2. Define the event base on that delegate
         // 3. Raise the event
-        // 4. Call the event method
+        // Optional
+        // 4. Create custom EventArgs
 
-        public void Encode()
+        public void Encode(Video video)
         {
             Console.WriteLine("Encoding Video\nPlease wait a minute...");
             // Act ass testing encode logic
             Thread.Sleep(5000);
 
-            // 4. Call the event method
-            OnVideoEncoded();
+            // 3. Raise the event
+            OnVideoEncoded(video);
         }
 
         // 1. Define the delegate
-        public delegate void VideoEncoderEventHandler(object source, EventArgs args);
+        public delegate void VideoEncoderEventHandler(object source, VideoEventArgs args);
 
         // 2. Define the event
-        public event VideoEncoderEventHandler VideoEncoded;
-        // Pakek past tense yang menandakan event ini akan ditriger saat proses encode video selesai
+        public event VideoEncoderEventHandler VideoEncoded; // Pakek past tense (menandakan event ini akan ditriger saat proses encode video selesai)
 
-        // 3. Raise the event
-        protected virtual void OnVideoEncoded()
+        protected virtual void OnVideoEncoded(Video video)
         {
             if (VideoEncoded != null)
-                VideoEncoded(this, EventArgs.Empty);
+                VideoEncoded(this, new VideoEventArgs() { video = video });
         }
+
+    }
+
+    // 4. Create custom EventArgs
+    public class VideoEventArgs : EventArgs
+    {
+        public Video video { get; set; }
     }
 }

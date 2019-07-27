@@ -19,7 +19,7 @@ namespace EventsAndDelegate
             videoEncoder.VideoEncoded += messageService.OnVideoEncoded; // Mendaftarkan subscriber baru
             
 
-            videoEncoder.Encode();
+            videoEncoder.Encode(video);
             Console.WriteLine("Done");
             Console.ReadLine();
         }
