@@ -7,3 +7,5 @@ commit pertama: initial program
 commit ke-2: menambhakan subscriber baru (Message Service)
 
 commit ke-3: menambahkan custem EventArgs
+
+commit ke-4: mengganti delegate dengan event handler
